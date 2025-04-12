@@ -33,10 +33,10 @@ export const getMovieById = async (req, res) => {
       return res.status(404).json({ message: "Movie not found" });
 
     res.status(200).json(rows[0]);
-  } catch (err) {
+  } catch (error) {
     res
       .status(500)
-      .json({ message: "Error fetching movie", error: err.message });
+      .json({ message: "Error fetching movie", error: error.message });
   }
 };
 
