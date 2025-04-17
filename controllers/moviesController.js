@@ -26,7 +26,8 @@ export const getAllMovies = async (req, res) => {
 export const getMovieById = async (req, res) => {
   try {
     const [rows] = await db.query(
-      "SELECT id, original_title, overview, poster_path, backdrop_path, release_date, vote_average, vote_count FROM movies WHERE id = ?",
+      //"SELECT id, original_title, overview, poster_path, backdrop_path, release_date, vote_average, vote_count FROM movies WHERE id = ?",
+      "SELECT m.id, m.original_title, m.overview, m.poster_path, m.backdrop_path, m.release_date, m.vote_average, m.vote_count, c.name castoriginal_name ,c.profile_path casts_profile FROM movies m inner join casts c on m.movie_id = c.movie_id WHERE m.id =?",
       [req.params.id]
     );
     if (rows.length === 0)
